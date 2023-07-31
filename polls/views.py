@@ -36,7 +36,7 @@ def index(request):
                 value_list= value_list + [value.forecast_value]
             
             print(data)
-            return HttpResponse(timeDifferences)
+            return HttpResponse(type(timeDifferences))
 
         except Exception as e:
     # Handle the exception here
