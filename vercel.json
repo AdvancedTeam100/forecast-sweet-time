@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "sweetTimeForcast/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "sweetTimeForcast/wsgi.py"
+      }
+    ]
+}
