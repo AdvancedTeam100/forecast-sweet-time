@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from greytheory import GreyTheory
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
 grey = GreyTheory()
 
+@csrf_exempt
 def index(request):
     if request.method == 'POST':
         data = request.POST.getlist('array')
