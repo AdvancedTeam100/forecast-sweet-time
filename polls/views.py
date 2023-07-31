@@ -35,7 +35,7 @@ def index(request):
             for value in gm11.analyzed_results:
                 value_list= value_list + [value.forecast_value]
             
-            return HttpResponse(data)
+            return HttpResponse(timeDifferences)
 
         except Exception as e:
     # Handle the exception here
