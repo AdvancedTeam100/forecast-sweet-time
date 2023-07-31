@@ -31,7 +31,7 @@ def index(request):
             for value in gm11.analyzed_results:
                 value_list= value_list + [value.forecast_value]
             
-            return HttpResponse(value_list[-1])
+            return HttpResponse(patterns)
 
         except Exception as e:
     # Handle the exception here
