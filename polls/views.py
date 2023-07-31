@@ -13,7 +13,7 @@ def index(request):
     if request.method == 'POST' :
         try:
             data = json.loads(request.body)
-            timeDifferences = data.get('array', [])
+            timeDifferences = data.get('arr', [])
             gm11 = grey.gm11
 
             patterns = [
@@ -35,8 +35,7 @@ def index(request):
             for value in gm11.analyzed_results:
                 value_list= value_list + [value.forecast_value]
             
-            print(data)
-            return HttpResponse(type(timeDifferences))
+            return HttpResponse(data)
 
         except Exception as e:
     # Handle the exception here
