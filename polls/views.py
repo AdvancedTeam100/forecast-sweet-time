@@ -16,14 +16,10 @@ def index(request):
             timeDifferences = data.get('arr', [])
             gm11 = grey.gm11
 
-            patterns = [
-                (223.3, ""),
-                (227.3, ""),
-                (230.5, ""),
-                (238.1, ""),
-                (242.9, ""),
-                (251.1, "")
-            ]
+            patterns = []
+
+            for value in timeDifferences:
+                patterns.append((float(value), ""))
 
             for pattern in patterns:
                 gm11.add_pattern(pattern[0], pattern[1])
@@ -35,7 +31,7 @@ def index(request):
             for value in gm11.analyzed_results:
                 value_list= value_list + [value.forecast_value]
             
-            return HttpResponse(timeDifferences[0])
+            return HttpResponse(value_list[-1])
 
         except Exception as e:
     # Handle the exception here
