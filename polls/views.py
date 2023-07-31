@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from greytheory import GreyTheory
@@ -10,10 +11,18 @@ grey = GreyTheory()
 @csrf_exempt
 def index(request):
     if request.method == 'POST':
-        data = request.POST.getlist('array')
+        data = request.body.decode('utf-8')
+        print(data)
+        array = []
+        try:
+            json_data = json.loads(data)
+            array = json_data.get('array', [])
+        except json.JSONDecodeError as e:
+            print("Error decoding JSON:", str(e))
+                
         gm11 = grey.gm11
 
-        for value in data:
+        for value in array:
             gm11.add_pattern(float(value), "")
 
         gm11.period = 2
