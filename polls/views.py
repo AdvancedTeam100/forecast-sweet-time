@@ -19,7 +19,7 @@ def index(request):
             patterns = []
 
             for value in timeDifferences:
-                patterns.append((float(value), ""))
+                patterns.append((value, ""))
 
             for pattern in patterns:
                 gm11.add_pattern(pattern[0], pattern[1])
