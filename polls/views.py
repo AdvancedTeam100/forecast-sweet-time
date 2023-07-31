@@ -1,6 +1,5 @@
-import json
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from greytheory import GreyTheory
 from django.views.decorators.csrf import csrf_exempt
 
@@ -10,34 +9,29 @@ grey = GreyTheory()
 
 @csrf_exempt
 def index(request):
-    if request.method == 'POST':
-        # data = request.body.decode('utf-8')
-        print(request)
-        array = []
-        # try:
-        #     json_data = json.loads(data)
-        #     array = json_data.get('array', [])
-        # except json.JSONDecodeError as e:
-        #     print("Error decoding JSON:", str(e))
-                
-        # gm11 = grey.gm11
+    if request.method == 'POST' :
+        gm11 = grey.gm11
 
-        # for value in array:
-        #     gm11.add_pattern(float(value), "")
+        patterns = [
+            (223.3, ""),
+            (227.3, ""),
+            (230.5, ""),
+            (238.1, ""),
+            (242.9, ""),
+            (251.1, "")
+        ]
 
-        # gm11.period = 2
-        # gm11.forecast()
+        for pattern in patterns:
+            gm11.add_pattern(pattern[0], pattern[1])
 
-        # value_list = []
-        # for value in gm11.analyzed_results:
-        #     value_list.append(value.forecast_value)
+        gm11.period = 2
+        gm11.forecast()
 
-        # result = {
-        #     'forecast_value': value_list[-1]
-        # }
-
-        return JsonResponse("result")
-    else:
-        return HttpResponse("Invalid request method.")
+        value_list = []
+        for value in gm11.analyzed_results:
+            value_list= value_list + [value.forecast_value]
+        
+        print(value_list[-1])
+    return HttpResponse("Hello, world. You're at the polls index.")
 
 
