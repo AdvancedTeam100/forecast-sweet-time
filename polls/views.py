@@ -14,9 +14,6 @@ def index(request):
         try:
             data = json.loads(request.body)
             timeDifferences = data.get('array', [])
-        except Exception as e:
-    # Handle the exception here
-            print(f"An error occurred: {str(e)}")
             gm11 = grey.gm11
 
             patterns = [
@@ -41,4 +38,7 @@ def index(request):
             print(data)
             return HttpResponse(timeDifferences)
 
-
+        except Exception as e:
+    # Handle the exception here
+            return HttpResponse(f"An error occurred: {str(e)}")
+            
