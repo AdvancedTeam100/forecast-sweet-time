@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+)st+5j-t0i7(k4f#%zq16j($xjzl)p^=v*28!v1+h6l3wt6x8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['forecast-sweet-time.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
